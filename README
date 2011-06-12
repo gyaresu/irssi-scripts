@@ -1,2 +1,17 @@
-gistlog
+
+ *  gistlog
     run /lastlog with given arguments and posts as a new public gist on GitHub
+
+These two go together, need a tad more cleanup:
+ *  local-growl
+    send growl alerts from Irssi via embedded Growl::Tiny code
+
+ *  growlnotify.pl
+    pretend to be Extras/growlnotify from the growl distribution by forking
+    (for non blocking) then sshing to a remote host and envoking growlnotify
+    there
+
+probably not very useful to others, especially without heavy editing
+
+ *  nagios-ack
+    keeps track of most recent Nagios alert so you can ack on irc via /ack
