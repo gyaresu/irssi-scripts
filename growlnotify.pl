@@ -5,8 +5,12 @@ use strict;
 use warnings;
 
 use POSIX qw(setsid);
+use IPC::PerlSSH;
 
-alarm 20;
+my $ssh_host    = 'localhost';
+my $ssh_port    = 22992;
+my $ssh_user    = 'mgreb';
+my $growlnotify = '/usr/local/bin/growlnotify';
 
 # daemonize so we are non-blocking
 chdir '/' or exit 1;
@@ -17,5 +21,13 @@ defined( my $pid = fork ) or exit 1;
 exit if $pid;
 setsid or exit 1;
 
-system '/usr/bin/ssh', 'mgreb@localhost', '-p 22992',
-    '/usr/local/bin/growlnotify', @ARGV;
+alarm 20;
+
+my $ips = IPC::PerlSSH->new(
+    Host    => $ssh_host,
+    Port    => $ssh_port,
+    User    => $ssh_user
+);
+
+$ips->use_library('Run', 'system');
+$ips->call( 'system', $growlnotify, @ARGV );

@@ -23,10 +23,6 @@ sub send_growl {
 
     return if ( !Irssi::settings_get_bool('growl_enabled') );
 
-    # lame shell escaping due to the pass throush ssh to remote shell
-    $title   = escape_and_wrap($title);
-    $message = escape_and_wrap($message); 
-
     notify( {
         name    => 'irssi',
         image   => '/Users/mgreb/Documents/irssi.png',
@@ -52,12 +48,6 @@ sub on_print_text {
     {   my $title = 'Highlight in ' . $text_dest_rec_ref->{'target'};
         send_growl( $title, $stripped, 'Hilight' );
     }
-}
-
-sub escape_and_wrap {
-    my $text = shift;
-    $text =~ s/'/\\'/g;
-    return "'$text'";
 }
 
 ## notify from Growl::Tiny 0.0.3 by Alex White (wu) retrieved 2011-06-11 at
