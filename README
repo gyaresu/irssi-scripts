@@ -2,9 +2,9 @@
  *  gistlog
     run /lastlog with given arguments and posts as a new public gist on GitHub
 
-These two go together, need a tad more cleanup:
  *  local-growl
-    send growl alerts from Irssi via embedded Growl::Tiny code
+    send growl alerts from Irssi via growlnotify
+    irssi.png is an image suitable for the notification image
 
  *  growlnotify.pl
     pretend to be Extras/growlnotify from the growl distribution by forking
